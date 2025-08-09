@@ -1,0 +1,46 @@
+<mat-card appearance="outlined">
+<h1>{{btnTitulo}}</h1> 
+<form [formGroup]="formularioFuncionario" (ngSubmit)="submit()" #formdit="ngForm">
+    <!-- mapeando o id sem aparecer em tela com hidden -->
+    <input type="hidden" formControlName="id">
+
+
+
+
+<div class="input_box">
+<mat-form-field class="example-full-width">
+    <mat-label for="">Nome</mat-label>
+    <input matInput type="text" formControlName="nome" placeholder="Insira o nome!" required>
+</mat-form-field>
+</div>
+
+<div class="input_box">
+<mat-form-field>
+<mat-label for="">Setor</mat-label>
+<mat-select id="setor" formControlName="setor" matNativeControl required>
+    <mat-option value="TI">TI</mat-option>
+    <mat-option value="CONTABILIDADE">CONTABILIDADE</mat-option>    
+</mat-select>
+</mat-form-field>
+</div>
+
+<div class="input_box">
+<mat-form-field>
+<mat-label for="">Turno</mat-label>
+<mat-select id="turno" formControlName="turno" matNativeControl required>
+    <mat-option value="MANHÃ">MANHÃ</mat-option>
+    <mat-option value="TARDE">TARDE</mat-option>
+    <mat-option value="NOITE">NOITE</mat-option>
+    
+</mat-select>
+</mat-form-field>
+</div>
+
+
+<div class="btn-box">
+    <button type="submit" [disabled]="!formularioFuncionario.valid"
+     mat-raised-button color="accent">{{btnAcao}}</button>
+    <button [routerLink]="['/']" routerLinkActive="router-link-active" mat-raised-button >Voltar</button>
+</div>
+</form>
+</mat-card> 

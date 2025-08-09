@@ -1,0 +1,39 @@
+<mat-card>
+<div>
+    <h1>Detalhes funcionario</h1>
+</div >
+<div *ngIf="funcionario">
+   
+    <form >
+    
+        <div class="input_box">
+        <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input matInput type="text" value="{{funcionario.nome}}"disabled>
+         </mat-form-field>    
+        </div>
+   
+    
+        
+        
+        <div class="input_box">
+            <mat-form-field>
+            <mat-label>Setor</mat-label>
+            <input matInput type="text" value="{{funcionario.setor}}"disabled>
+            </mat-form-field>
+        </div>    
+
+        <div class="input_box">
+            <mat-form-field>
+            <mat-label>Turno:</mat-label>
+           <input matInput type="text" value="{{funcionario.turno}}"disabled>
+           </mat-form-field>
+        </div>    
+
+         
+<div class="btn-box">  
+    <button [routerLink]="['/']" routerLinkActive="router-link-active"  mat-raised-button>Voltar</button>
+</div>
+    </form>
+</div>
+</mat-card>

@@ -1,0 +1,10 @@
+
+
+<!-- coloque o if para que o form só seja recarregado apenas se tiver funcionario  -->
+ <div *ngIf="funcionario">
+<app-form-funcionario [btnAcao]="btnAcao" [btnTitulo]="btnTitulo" [dadosFuncionario]="funcionario" (onSubmit)="editarFuncionario($event)"></app-form-funcionario>
+
+</div>
+
+
+<!-- /*dados funcionario sera usado pra preencher os dados do formulario de editar e o funcionario vem de dentro do arquivo editar.ts*/ -->
