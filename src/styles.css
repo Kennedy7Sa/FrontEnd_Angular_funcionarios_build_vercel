@@ -44,9 +44,10 @@ table {
 .cell-acoes {
   white-space: nowrap; /* Evita que os botões quebrem para a linha de baixo */
   min-width: 250px;    /* Define uma largura mínima para a célula */
+  min-height: 70px;
   display: flex;       /* Usa Flexbox para os botões ficarem lado a lado */
   gap: 0.5rem;         /* Adiciona um pequeno espaço entre os botões */
-  align-items: center; /* Alinha os botões verticalmente ao centro */
+  /* align-items: center; Alinha os botões verticalmente ao centro */
 }
 /* Estilos responsivos para telas pequenas */
 @media (max-width: 768px) {
