@@ -1,7 +1,7 @@
 <mat-card>
 <div>
 <div class="btn-box">
-    <button [routerLink]="['cadastrarFuncionario']" routerLinkActive="router-link-active" mat-raised-button color="primary" style="width:700px;">Cadastrar</button>
+    <button [routerLink]="['cadastrarFuncionario']" mat-raised-button color="primary">Cadastrar</button>
     <div class="input_box">
         <mat-form-field>
         <mat-label>Procurar</mat-label>
@@ -10,8 +10,8 @@
     </div>
 </div>
 
-
-<table mat-table [dataSource]="funcionarios" class="mat-elevation-z8">
+<div class="table-container">
+<table mat-table [dataSource]="funcionarios" class="mat-table-reponsive">
 
 
   <!-- Weight Column -->
@@ -33,7 +33,7 @@
 
   <ng-container matColumnDef="Ações">
     <th mat-header-cell *matHeaderCellDef>  </th>
-    <td mat-cell *matCellDef="let funcionario"> 
+    <td mat-cell *matCellDef="let funcionario" class="cell-acoes"> 
         <button routerLink="/editarFuncionario/{{funcionario.id}}" mat-raised-button color="accent">Editar</button>
 
         <button routerLink="/buscarFuncionarioPorId/{{funcionario.id}}" mat-raised-button>Detalhes</button> 
@@ -51,7 +51,7 @@
   <tr mat-header-row *matHeaderRowDef="colunas"></tr>
   <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
 </table>
-
+</div>
 
 </div>
 </mat-card>

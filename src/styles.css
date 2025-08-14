@@ -1,40 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
-/* You can add global styles to this file, and also import other style files */
-html,body{
-    width: 100vw;
-    height: 100vh;
-    font-size: 62.5%; 
-    /* overflow: hidden; */
+/* Estilo geral do mat-card */
+mat-card {
+  width: 90%;
+  margin: 0 auto;
+  padding: 1.5rem;
 }
 
-mat-card{
-   width: 90%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   margin: 0 auto;
-   padding: 2.5rem;
-  
+/* Estilo para a caixa de botões e input */
+.btn-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; /* Alinha verticalmente os itens */
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
+.btn-box button {
+  width: 100%;
+  /* Remova o max-width para permitir que o botão se estique em telas maiores e comprima em telas pequenas. */
+}
 
-mat-form-field{
+/* Garante que o input possa diminuir */
+.input_box {
+  flex-grow: 1; /* Permite que o input preencha o espaço disponível */
+  min-width: 200px; /* Mantém uma largura mínima razoável */
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+/* Estilo para a tabela */
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* A rolagem horizontal é a solução correta para tabelas em telas pequenas */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Estilo para a célula de botões na tabela */
+.cell-acoes {
+  white-space: nowrap; /* Evita que os botões quebrem para a linha de baixo */
+  min-width: 250px;    /* Define uma largura mínima para a célula */
+  display: flex;       /* Usa Flexbox para os botões ficarem lado a lado */
+  gap: 0.5rem;         /* Adiciona um pequeno espaço entre os botões */
+  align-items: center; /* Alinha os botões verticalmente ao centro */
+}
+/* Estilos responsivos para telas pequenas */
+@media (max-width: 768px) {
+  .btn-box {
+    flex-direction: column; /* Empilha os itens verticalmente */
+  }
+
+  .btn-box button {
     width: 100%;
-}
+  }
 
-.input_box{
-    width: 500px;
-}
-.btn-box{ 
- width: 500px; 
-
-
-}
-.btn-box button{
-    width: 50%;
-}
-
-table{
-    margin-top: 2rem;
+  table {
+    font-size: 0.9rem;
+  }
 }
