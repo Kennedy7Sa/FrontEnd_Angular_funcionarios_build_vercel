@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl : "https://apifuncionarios-deploy-render.onrender.com/api/"
+    apiUrl : "https://wrinkleless-kiesha-undemonstrative.ngrok-free.dev/api/"
 };
