@@ -6,58 +6,50 @@ import { RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ExcluirFuncModal } from '../excluir-func-modal/excluir-func-modal';
 import { materialImports } from '../../material';
-
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,RouterModule,materialImports],
+  imports: [CommonModule, RouterModule, materialImports],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrls: ['./home.css']
 })
-export class Home implements OnInit{
+export class Home implements OnInit {
+  funcionarios = new MatTableDataSource<FuncionarioModel>();
+  procurarFuncionario: FuncionarioModel[] = [];
+  colunas = ['Nome','Setor','Turno','Ações','Excluir'];
 
+  private funcionarioService = inject(FuncionarioService);
+  private dialog = inject(MatDialog);
 
-  funcionarios : FuncionarioModel[] = [];
-  procurarFuncionario: FuncionarioModel[]=[]; // lista fazia ja inicializada , não esqueça de popular com os mesmos dados da lista funcionarios .
-  colunas = ['Nome','Setor','Turno','Ações','Excluir']
+  @ViewChild(MatSort) sort!: MatSort;
 
-//injeção de dependencia das versões atuais , assim os metodos que tiverem no service podem ser acessado igual ao construtor .
-private funcionarioService = inject(FuncionarioService)
-private dialog = inject(MatDialog)
+  ngOnInit(): void {
+    this.funcionarioService.GetFuncionarios().subscribe((data) => {
+      this.funcionarios.data = data.dados;
+      this.procurarFuncionario = data.dados;
+      this.funcionarios.sort = this.sort;
+    });
+  }
 
-ngOnInit(): void {
+  OpenDialog(id: number) {
+    console.log('id passado para o modal ', id);
+    this.dialog.open(ExcluirFuncModal, {
+      width: '450px',
+      height: '450px',
+      data: { id }
+    });
+  }
 
-  this.funcionarioService.GetFuncionarios().subscribe((data)=>{
-    this.funcionarios = data.dados;
-    this.procurarFuncionario = data.dados; 
-  })
+  search(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const value = target.value.toLowerCase();
+    const filtered = this.procurarFuncionario.filter(f =>
+      f.nome.toLowerCase().includes(value)
+    );
+    this.funcionarios.data = filtered;
+  }
 }
-OpenDialog(id:number){
-  console.log('id pasado para o modal ',id)
-  this.dialog.open(ExcluirFuncModal,{
-    width:'450px',
-    height:'450px',
-    data:{
-      id:id
-    }
-  });
-
-}
-search(event : Event){
-  const target = event.target as HTMLInputElement; //pra pegar tudo que faz parte do input inclusive o value
-  const value = target.value.toLowerCase();
-
-  this.funcionarios = this.procurarFuncionario.filter(funcionarioEncontrado =>{
-    console.log(funcionarioEncontrado)
-    return funcionarioEncontrado.nome.toLowerCase().includes(value);
-    
-  })
-
-
-
-}
-}
-
-
-
